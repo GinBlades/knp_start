@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Apitokens list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Token</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for apiToken in apiTokens %}
+            <tr>
+                <td><a href="{{ path('apitoken_show', { 'id': apiToken.id }) }}">{{ apiToken.id }}</a></td>
+                <td>{{ apiToken.token }}</td>
+                <td>{{ apiToken.notes }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('apitoken_show', { 'id': apiToken.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('apitoken_edit', { 'id': apiToken.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('apitoken_new') }}">Create a new apiToken</a>
+        </li>
+    </ul>
+{% endblock %}

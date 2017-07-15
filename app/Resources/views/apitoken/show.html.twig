@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Apitoken</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ apiToken.id }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ apiToken.token }}</td>
+            </tr>
+            <tr>
+                <th>Notes</th>
+                <td>{{ apiToken.notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('apitoken_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('apitoken_edit', { 'id': apiToken.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
