@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\ApiToken;
+use AppBundle\Entity\User;
+
 /**
  * ApiTokenRepository
  *
@@ -10,4 +13,17 @@ namespace AppBundle\Repository;
  */
 class ApiTokenRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findOneByToken($token)
+    {
+        return $this->findOneBy(['token' => $token]);
+    }
+
+    /**
+     * @param  User   $user
+     * @return ApiToken[]
+     */
+    public function findAllForUser(User $user)
+    {
+        return $this->findBy(['user' => $user->getId()]);
+    }
 }

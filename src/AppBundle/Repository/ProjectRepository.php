@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Project;
+
 /**
  * ProjectRepository
  *
@@ -10,4 +12,29 @@ namespace AppBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param  $name
+     * @return Project
+     */
+    public function findOneByName($name)
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+
+    /**
+     * @param  $limit
+     * @return Project[]
+     */
+    public function findRandom($limit)
+    {
+        $projects = $this->createQueryBuilder('p')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->execute();
+
+        shuffle($projects);
+
+        return array_slice($projects, 0, $limit);
+    }
 }

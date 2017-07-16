@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Programmer;
+use AppBundle\Entity\User;
+
 /**
  * ProgrammerRepository
  *
@@ -10,4 +13,22 @@ namespace AppBundle\Repository;
  */
 class ProgrammerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param  User   $user
+     * @return Programmer[]
+     */
+    public function findAllforUser(User $user)
+    {
+        return $this->findBy(['user' => $user]);
+    }
+
+    /**
+     * @param $nickname
+     * @return Programmer
+     */
+    public function findOneByNickname($nickname)
+    {
+        return $this->findOneBy(['nickname' => $nickname]);
+    }
 }
