@@ -35,6 +35,25 @@ class ApiToken
      */
     private $notes;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+        $this->createdAt = new \DateTime();
+        $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
 
     /**
      * Get id
@@ -84,5 +103,15 @@ class ApiToken
     public function getNotes()
     {
         return $this->notes;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt();
     }
 }
