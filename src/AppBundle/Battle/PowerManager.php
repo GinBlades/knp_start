@@ -3,7 +3,7 @@
 namespace AppBundle\Battle;
 
 use AppBundle\Entity\Programmer;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PowerManager
 {
@@ -45,7 +45,7 @@ class PowerManager
         'The dinosaurs...they know how to open doors! %s energy',
     ];
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

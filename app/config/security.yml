@@ -2,7 +2,8 @@
 # https://symfony.com/doc/current/security.html
 security:
     encoders:
-        AppBundle\Entity\User: bcrypt
+        AppBundle\Entity\User:
+            algorithm: bcrypt
 
     providers:
         database_users:
