@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Web;
 
+use AppBundle\Battle\PowerManager;
 use AppBundle\Controller\BaseController;
 use AppBundle\Entity\Programmer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -84,7 +85,7 @@ class ProgrammerController extends BaseController
      * @Route("/programmers/{nickname}/power/up", name="programmer_powerup")
      * @Method("POST")
      */
-    public function powerUpAction($nickname)
+    public function powerUpAction(PowerManager $powerManager, $nickname)
     {
         /** @var Programmer $programmer */
         $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
@@ -93,7 +94,7 @@ class ProgrammerController extends BaseController
             throw new AccessDeniedException;
         }
 
-        $powerupDetails = $this->container->get('battle.power_manager')->powerUp($programmer);
+        $powerupDetails = $powerManager->powerUp($programmer);
 
         $this->addFlash(
             $powerupDetails['message'],

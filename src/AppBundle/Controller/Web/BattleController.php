@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Web;
 
+use AppBundle\Battle\BattleManager;
 use AppBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,7 +15,7 @@ class BattleController extends BaseController
      * @Route("/battles/new", name="battle_new")
      * @Method("POST")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, BattleManager $battleManager)
     {
         $programmerId = $request->request->get('programmer_id');
         $projectId = $request->request->get('project_id');
@@ -25,7 +26,7 @@ class BattleController extends BaseController
             throw new AccessDeniedException();
         }
 
-        $battle = $this->getBattleManager()->battle($programmer, $project);
+        $battle = $battleManager->battle($programmer, $project);
         return $this->redirect($this->generateUrl('battle_show', ['id' => $battle->getId()]));
     }
 

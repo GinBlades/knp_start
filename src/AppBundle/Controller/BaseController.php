@@ -57,9 +57,4 @@ abstract class BaseController extends Controller
     {
         return $this->getDoctrine()->getRepository('AppBundle:ApiToken');
     }
-
-    protected function getBattleManager()
-    {
-        return $this->container->get('battle.battle_manager');
-    }
 }

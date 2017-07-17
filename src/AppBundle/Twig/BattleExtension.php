@@ -19,7 +19,7 @@ class BattleExtension extends \Twig_Extension
         return sprintf('img/avatar%s.png', $number);
     }
 
-    public function getPowerLevel(Programmer $programmer)
+    public function getPowerLevelClass(Programmer $programmer)
     {
         $powerLevel = $programmer->getPowerLevel();
         switch (true) {
