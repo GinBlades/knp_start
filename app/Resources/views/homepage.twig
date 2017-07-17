@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<div class="button-list">
+    <ul class="action-buttons-list">
+        <li>
+            <a class="btn btn-lg btn-create" href="{{ path('programmer_new') }}">Create Programmer</a>
+        </li>
+        <li>
+            <a class="btn btn-lg btn-create" href="{{ path('programmer_choose') }}">Start Battle</a>
+        </li>
+        <li>
+            <a class="btn btn-lg btn-create" href="{{ path('battle_list') }}">Scores</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
